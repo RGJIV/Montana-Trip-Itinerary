@@ -1,105 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Montana Trip Itinerary</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; margin: 0; padding: 16px; background: #f0f2f5; color: #1a1a1a; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 24px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-        h1 { color: #003366; margin-top: 0; font-size: 1.6em; }
-        h2 { color: #003366; border-bottom: 2px solid #003366; padding-bottom: 6px; margin-top: 32px; }
-        .flight-card { border: 1px solid #e0e0e0; padding: 16px; margin: 16px 0; border-radius: 8px; background: #fafafa; }
-        .flight-header { font-weight: 700; color: #003366; font-size: 1.15em; margin-bottom: 8px; }
-        .status { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; font-weight: 600; }
-        .on-time { background: #d4edda; color: #155724; }
-        .scheduled { background: #e2e3e5; color: #383d41; }
-        .lounge { background: #e8f4fd; padding: 12px; border-radius: 6px; margin-top: 12px; border-left: 4px solid #0066cc; }
-        .meta { color: #555; font-size: 0.95em; line-height: 1.5; }
-        .footer { margin-top: 32px; font-size: 0.85em; color: #777; border-top: 1px solid #eee; padding-top: 16px; }
-        a { color: #0066cc; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Montana Trip Itinerary</title>
+<style>
+  :root { --navy: #003366; --blue: #0066cc; --bg: #f0f2f5; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; margin: 0; padding: 16px; background: var(--bg); color: #1a1a1a; line-height: 1.5; }
+  .container { max-width: 820px; margin: 0 auto; background: white; padding: 24px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+  h1 { color: var(--navy); margin: 0 0 8px; font-size: 1.7em; }
+  h2 { color: var(--navy); border-bottom: 2px solid var(--navy); padding-bottom: 6px; margin: 36px 0 16px; font-size: 1.25em; }
+  h3 { color: var(--navy); margin: 20px 0 8px; font-size: 1.05em; }
+  .meta-top { color: #555; font-size: 0.95em; margin-bottom: 20px; }
+  .card { border: 1px solid #e0e0e0; padding: 16px; margin: 14px 0; border-radius: 8px; background: #fafafa; }
+  .card-header { font-weight: 700; color: var(--navy); font-size: 1.1em; margin-bottom: 8px; }
+  .status { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.82em; font-weight: 600; }
+  .on-time { background: #d4edda; color: #155724; }
+  .scheduled { background: #e2e3e5; color: #383d41; }
+  .lounge { background: #e8f4fd; padding: 12px; border-radius: 6px; margin-top: 10px; border-left: 4px solid var(--blue); font-size: 0.95em; }
+  .note { background: #fff8e6; padding: 10px 14px; border-radius: 6px; margin: 12px 0; border-left: 4px solid #e6a700; font-size: 0.93em; }
+  .maps a { color: var(--blue); text-decoration: none; font-weight: 500; }
+  .maps a:hover { text-decoration: underline; }
+  table.sched { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.95em; }
+  table.sched td { padding: 6px 8px; vertical-align: top; border-bottom: 1px solid #eee; }
+  table.sched td:first-child { width: 110px; white-space: nowrap; color: #444; font-weight: 500; }
+  .footer { margin-top: 36px; font-size: 0.85em; color: #777; border-top: 1px solid #eee; padding-top: 16px; }
+  a { color: var(--blue); }
+  .map-links { margin-top: 8px; font-size: 0.9em; }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Montana Trip Itinerary</h1>
-        <p><strong>Traveler:</strong> Richard &nbsp;|&nbsp; <strong>Confirmation:</strong> JKYL2E &nbsp;|&nbsp; <strong>SkyMiles:</strong> 2410247817</p>
+<div class="container">
 
-        <div class="section">
-            <h2>Outbound — Thursday, August 13, 2026</h2>
+<h1>Montana Trip Itinerary</h1>
+<p class="meta-top">
+  <strong>Traveler:</strong> Richard &nbsp;|&nbsp; 
+  <strong>Confirmation:</strong> JKYL2E &nbsp;|&nbsp; 
+  <strong>SkyMiles:</strong> 2410247817<br>
+  Last updated: August 13, 2026 ~6:25 AM EDT
+</p>
 
-            <div class="flight-card">
-                <div class="flight-header">DL 1146 &nbsp; GSP → ATL</div>
-                <div class="meta">
-                    <strong>Departure:</strong> Gate B4 &nbsp; 6:55 AM EDT<br>
-                    <strong>Arrival:</strong> Gate C3 &nbsp; 7:51 AM EDT<br>
-                    <strong>Seat:</strong> 3A &nbsp;|&nbsp; Aircraft: Boeing 737-900
-                </div>
-                <p><strong>Status:</strong> <span class="status on-time">On Time</span></p>
-                <div class="lounge">
-                    <strong>Nearest Sky Club at ATL (for connection):</strong><br>
-                    Concourse A Sky Club near Gate A17 / A19 (upper level, near P.F. Chang’s).<br>
-                    From arrival Gate C3 take the Plane Train to A, then short walk.
-                </div>
-            </div>
+<!-- ===================== TODAY ===================== -->
+<h2>Thursday, August 13 — Arrival Day</h2>
 
-            <div class="flight-card">
-                <div class="flight-header">DL 406 &nbsp; ATL → BZN</div>
-                <div class="meta">
-                    <strong>Departure:</strong> Gate B13 &nbsp; 11:05 AM EDT<br>
-                    <strong>Arrival:</strong> Gate A1 &nbsp; 1:00 PM MDT<br>
-                    <strong>Seat:</strong> 3A &nbsp;|&nbsp; Aircraft: Boeing 757-200
-                </div>
-                <p><strong>Status:</strong> <span class="status on-time">On Time</span></p>
-                <div class="lounge">
-                    <strong>Nearest Sky Club at ATL (before departure):</strong><br>
-                    Concourse B Sky Club or the large Concourse A club near A17/A19. Gate B13 is in Concourse B — check the nearest available lounge on the day.
-                </div>
-                <div class="lounge">
-                    <strong>At BZN:</strong><br>
-                    Delta Sky Club near Gate 3. Short walk from arrival Gate A1.
-                </div>
-            </div>
-        </div>
+<div class="card">
+  <div class="card-header">DL 1146 &nbsp; GSP → ATL</div>
+  <div>
+    <strong>Departure:</strong> Gate B4 &nbsp; 6:55 AM EDT<br>
+    <strong>Arrival:</strong> Gate C3 &nbsp; 7:51 AM EDT<br>
+    <strong>Seat:</strong> 3A &nbsp;|&nbsp; Boeing 737-900
+  </div>
+  <p><strong>Status:</strong> <span class="status on-time">On Time</span></p>
+  <div class="lounge">
+    <strong>Nearest Sky Club at ATL (connection):</strong><br>
+    Concourse A Sky Club near Gate A17 / A19 (upper level, near P.F. Chang’s).<br>
+    From Gate C3 take the Plane Train to A, then short walk.
+  </div>
+  <div class="map-links">
+    <a href="https://www.flightaware.com/live/flight/DAL1146" target="_blank">Track live on FlightAware</a>
+  </div>
+</div>
 
-        <div class="section">
-            <h2>Return — Thursday, August 20, 2026</h2>
+<div class="card">
+  <div class="card-header">DL 406 &nbsp; ATL → BZN</div>
+  <div>
+    <strong>Departure:</strong> Gate B13 &nbsp; 11:05 AM EDT<br>
+    <strong>Arrival:</strong> Gate A1 &nbsp; 1:00 PM MDT<br>
+    <strong>Seat:</strong> 3A &nbsp;|&nbsp; Boeing 757-200
+  </div>
+  <p><strong>Status:</strong> <span class="status on-time">On Time</span></p>
+  <div class="lounge">
+    <strong>Nearest Sky Club at ATL (before departure):</strong><br>
+    Concourse B Sky Club or the large Concourse A club near A17/A19. Gate B13 is in Concourse B.
+  </div>
+  <div class="lounge">
+    <strong>At BZN:</strong> Delta Sky Club near Gate 3. Short walk from arrival Gate A1.
+  </div>
+  <div class="map-links">
+    <a href="https://www.flightaware.com/live/flight/DAL406" target="_blank">Track live on FlightAware</a>
+  </div>
+</div>
 
-            <div class="flight-card">
-                <div class="flight-header">DL 406 &nbsp; BZN → ATL</div>
-                <div class="meta">
-                    <strong>Departure:</strong> 2:15 PM MDT<br>
-                    <strong>Arrival:</strong> 8:12 PM EDT<br>
-                    <strong>Seat:</strong> 2A
-                </div>
-                <p><strong>Status:</strong> <span class="status scheduled">Scheduled</span></p>
-                <div class="lounge">
-                    <strong>At BZN before departure:</strong><br>
-                    Delta Sky Club near Gate 3.
-                </div>
-            </div>
+<div class="card">
+  <div class="card-header">Uber: BZN Airport → The Lark</div>
+  <div>
+    ~15–20 minutes · ~8–10 miles<br>
+    Request after landing and baggage claim.
+  </div>
+  <div class="map-links">
+    <a href="https://www.google.com/maps/dir/?api=1&origin=Bozeman+Yellowstone+International+Airport+(BZN)&destination=The+Lark,+Bozeman,+MT&travelmode=driving" target="_blank">Google Maps directions</a>
+  </div>
+</div>
 
-            <div class="flight-card">
-                <div class="flight-header">DL 2281 &nbsp; ATL → GSP</div>
-                <div class="meta">
-                    <strong>Departure:</strong> 10:00 PM EDT<br>
-                    <strong>Arrival:</strong> 10:59 PM EDT<br>
-                    <strong>Seat:</strong> 2A
-                </div>
-                <p><strong>Status:</strong> <span class="status scheduled">Scheduled</span></p>
-                <div class="lounge">
-                    <strong>At ATL (long evening layover):</strong><br>
-                    Use the Concourse A or B Sky Clubs depending on your arrival gate. Plenty of time after the ~8:12 PM arrival before the 10:00 PM departure.
-                </div>
-            </div>
-        </div>
+<div class="card">
+  <div class="card-header">The Lark — Bozeman</div>
+  <div>
+    Stay: August 13–15<br>
+    Confirmation: 63602SG129211<br>
+    Check-in: after 3:00 PM<br>
+    Email: info@larkbozeman.com
+  </div>
+  <div class="map-links">
+    <a href="https://www.google.com/maps/search/?api=1&query=The+Lark+Bozeman+MT" target="_blank">Google Maps · The Lark</a>
+  </div>
+</div>
 
-        <div class="footer">
-            Live data from FlightAware as of ~6:20 AM EDT on August 13, 2026.<br>
-            Gates and status can change — always re-check the Delta app or FlightAware before heading to the airport.<br>
-            <a href="https://www.flightaware.com/live/flight/DAL1146">Track DL1146</a> &nbsp;·&nbsp; 
-            <a href="https://www.flightaware.com/live/flight/DAL406">Track DL406</a>
-        </div>
-    </div>
+<div class="card">
+  <div class="card-header">Dinner — Ted’s Montana Grill</div>
+  <div>
+    Tentatively 7:00 PM (time TBD)<br>
+    Classic Montana steakhouse.
+  </div>
+  <div class="map-links">
+    <a href="https://www.google.com/maps/search/?api=1&query=Ted's+Montana+Grill+Bozeman" target="_blank">Google Maps · Ted’s Montana Grill</a>
+  </div>
+</div>
+
+<!-- ===================== TOMORROW ===================== -->
+<h2>Friday, August 14 — Bozeman Morning + Transfer</h2>
+
+<div class="card">
+  <div class="card-header">6:00 AM — Coffee</div>
+  <div>
+    <strong>The Daily Coffee & Eatery</strong><br>
+    1203 N Rouse Ave #3A, Bozeman<br>
+    Opens 6:00 AM · ~5-minute walk from The Lark
+  </div>
+  <div class="map-links">
+    <a href="https://www.google.com/maps/dir/?api=1&origin=The+Lark,+Bozeman,+MT&destination=1203+N+Rouse+Ave,+Bozeman,+MT&travelmode=walking" target="_blank">Walking directions from The Lark</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">8:00 AM — Breakfast / Crepes</div>
+  <div>
+    <strong>Stuffed Crepes & Waffles</strong> (downtown)<br>
+    26 W Main St, Bozeman<br>
+    Opens 7:00–8:00 AM range · short walk from The Lark / downtown
+  </div>
+  <div class="map-links">
+    <a href="https://www.google.com/maps/search/?api=1&query=Stuffed+Crepes+and+Waffles+26+W+Main+St+Bozeman" target="_blank">Google Maps · Stuffed Crepes</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">After Breakfast — Fly Shop</div>
+  <div>
+    <strong>Montana Troutfitters</strong><br>
+    1716 W Main St, Bozeman<br>
+    Highly regarded shop · large fly selection, reports, guided trips<br>
+    Typical hours ~9 or 10 AM – 6 PM
+  </div>
+  <div class="map-links">
+    <a href="https://www.google.com/maps/search/?api=1&query=Montana+Troutfitters+1716+W+Main+St+Bozeman" target="_blank">Google Maps · Montana Troutfitters</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">11:00 AM — Transfer to West Yellowstone</div>
+  <div>
+    Bozeman → West Yellowstone<br>
+    ~89 miles via US-191 · ~1 hour 42–50 minutes<br>
+    Scenic drive through Gallatin Canyon
+  </div>
+  <div class="map-links">
+    <a href="https://www.google.com/maps/dir/?api=1&origin=Bozeman,+MT&destination=West+Yellowstone,+MT&travelmode=driving" target="_blank">Google Maps · Drive Bozeman → West Yellowstone</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">Golden Stone Inn — West Yellowstone</div>
+  <div>
+    Stay: Friday night (Aug 14) through early Thursday morning (Aug 20)<br>
+    Address: 115 South Faithful Street, West Yellowstone, MT 59758<br>
+    Phone: (406) 646-5181<br>
+    ~1 mile from Yellowstone’s West Entrance<br>
+    Modern cabin-style, free breakfast, community fire pit, rod racks
+  </div>
+  <div class="map-links">
+    <a href="https://www.google.com/maps/search/?api=1&query=Golden+Stone+Inn+115+South+Faithful+St+West+Yellowstone" target="_blank">Google Maps · Golden Stone Inn</a> &nbsp;·&nbsp;
+    <a href="https://goldenstoneinn.com/" target="_blank">Hotel website</a>
+  </div>
+</div>
+
+<!-- ===================== FISHING DAYS ===================== -->
+<h2>Saturday Aug 15 – Wednesday Aug 19 — Fishing Days</h2>
+
+<div class="card">
+  <div class="card-header">Base: Golden Stone Inn, West Yellowstone</div>
+  <div>
+    Daily fishing locations will be added as you decide them each day.<br>
+    Markers and routes can be dropped onto the map once you share coordinates or place names.
+  </div>
+  <div class="note">
+    Leave West Yellowstone around <strong>7:30 AM on Thursday, August 20</strong> to reach Bozeman airport with comfortable buffer for the 2:15 PM departure.
+  </div>
+</div>
+
+<!-- ===================== RETURN ===================== -->
+<h2>Thursday, August 20 — Return</h2>
+
+<div class="card">
+  <div class="card-header">Morning Drive</div>
+  <div>
+    Depart West Yellowstone ~7:30 AM → Bozeman Yellowstone International Airport (BZN)<br>
+    Same ~1h45m drive via US-191
+  </div>
+  <div class="map-links">
+    <a href="https://www.google.com/maps/dir/?api=1&origin=Golden+Stone+Inn,+West+Yellowstone,+MT&destination=Bozeman+Yellowstone+International+Airport+(BZN)&travelmode=driving" target="_blank">Google Maps · Golden Stone Inn → BZN Airport</a>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">DL 406 &nbsp; BZN → ATL</div>
+  <div>
+    <strong>Departure:</strong> 2:15 PM MDT<br>
+    <strong>Arrival:</strong> 8:12 PM EDT<br>
+    <strong>Seat:</strong> 2A
+  </div>
+  <p><strong>Status:</strong> <span class="status scheduled">Scheduled</span></p>
+  <div class="lounge">
+    <strong>At BZN before departure:</strong> Delta Sky Club near Gate 3.
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">DL 2281 &nbsp; ATL → GSP</div>
+  <div>
+    <strong>Departure:</strong> 10:00 PM EDT<br>
+    <strong>Arrival:</strong> 10:59 PM EDT<br>
+    <strong>Seat:</strong> 2A
+  </div>
+  <p><strong>Status:</strong> <span class="status scheduled">Scheduled</span></p>
+  <div class="lounge">
+    <strong>At ATL (evening layover ~1h45m+):</strong><br>
+    Use Concourse A or B Sky Clubs depending on arrival gate. Comfortable buffer after the ~8:12 PM arrival.
+  </div>
+</div>
+
+<!-- ===================== MAP ===================== -->
+<h2>Key Locations Map</h2>
+<div class="card">
+  <p>Bozeman (The Lark + downtown + fly shop) and West Yellowstone (Golden Stone Inn).</p>
+  <div class="map-links">
+    <a href="https://www.google.com/maps/dir/?api=1&origin=The+Lark,+Bozeman,+MT&destination=Golden+Stone+Inn,+West+Yellowstone,+MT&travelmode=driving" target="_blank">Open full route: Bozeman → West Yellowstone</a><br><br>
+    <a href="https://www.google.com/maps/search/?api=1&query=The+Lark+Bozeman+MT" target="_blank">The Lark</a> · 
+    <a href="https://www.google.com/maps/search/?api=1&query=Golden+Stone+Inn+West+Yellowstone" target="_blank">Golden Stone Inn</a> · 
+    <a href="https://www.google.com/maps/search/?api=1&query=Montana+Troutfitters+Bozeman" target="_blank">Troutfitters</a>
+  </div>
+  <p style="margin-top:12px;font-size:0.9em;color:#555;">When you add daily fishing spots, share the names or coordinates and they can be pinned here with routes.</p>
+</div>
+
+<div class="footer">
+  Live flight data from FlightAware as of ~6:20 AM EDT, August 13, 2026.<br>
+  Gates and status can change — always re-check the Delta app or FlightAware before heading to the airport.<br>
+  <a href="https://www.flightaware.com/live/flight/DAL1146">Track DL1146</a> · 
+  <a href="https://www.flightaware.com/live/flight/DAL406">Track DL406</a><br><br>
+  Repo: <a href="https://github.com/RGJIV/Montana-Trip-Itinerary">github.com/RGJIV/Montana-Trip-Itinerary</a>
+</div>
+
+</div>
 </body>
 </html>
