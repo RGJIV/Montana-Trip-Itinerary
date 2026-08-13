@@ -1,0 +1,257 @@
+/* ============================================================
+   Montana Trip Itinerary — shared stylesheet
+   Formal letterhead treatment adapted from the Swiss Christmas
+   2026 itinerary. Clean, efficient, print-friendly.
+   ============================================================ */
+
+:root {
+  --paper:       #f7f1e3;
+  --paper-deep:  #efe6cd;
+  --card:        #fffdf6;
+  --ink:         #26291f;
+  --ink-soft:    #4a4636;
+  --sub:         #7a7057;
+  --pine:        #1f4d3a;
+  --pine-deep:   #143327;
+  --gold:        #a37b2c;
+  --gold-soft:   #d8bd82;
+  --rule:        #cbbd93;
+  --line:        #e2d7b8;
+  --wine:        #7a2b2b;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0 18px 90px;
+  background:
+    radial-gradient(ellipse at top, #fffdf8 0%, var(--paper) 55%),
+    var(--paper);
+  color: var(--ink);
+  font-family: "Times New Roman", Times, "Liberation Serif", Georgia, serif;
+  line-height: 1.6;
+  font-size: 17px;
+}
+
+.wrap { max-width: 920px; margin: 0 auto; }
+
+/* ---------------- Masthead ---------------- */
+.masthead {
+  padding: 46px 0 22px;
+  text-align: center;
+}
+.crest {
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 14px;
+  color: var(--pine);
+}
+.masthead .kicker {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.masthead h1 {
+  font-size: 2.15rem;
+  font-weight: bold;
+  margin: 0 0 8px;
+  letter-spacing: 0.01em;
+  color: var(--pine-deep);
+}
+.masthead .subtitle {
+  color: var(--sub);
+  font-style: italic;
+  font-size: 1rem;
+  margin: 0 0 22px;
+}
+.rule {
+  border: none;
+  height: 3px;
+  margin: 0 auto 4px;
+  max-width: 640px;
+  background: linear-gradient(to right, transparent, var(--gold) 15%, var(--gold) 85%, transparent);
+}
+.rule.thin {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--rule) 15%, var(--rule) 85%, transparent);
+  margin-top: 4px;
+  margin-bottom: 22px;
+}
+
+/* ---------------- Content blocks ---------------- */
+.note {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--pine);
+  padding: 14px 18px;
+  border-radius: 2px;
+  font-size: 0.93rem;
+  margin: 22px 0;
+  color: var(--ink-soft);
+}
+.note a { color: var(--pine-deep); }
+
+.flag {
+  font-size: 0.86rem;
+  background: #fbf3e2;
+  border-left: 3px solid var(--gold);
+  padding: 10px 14px;
+  border-radius: 2px;
+  margin-top: 12px;
+  color: var(--ink-soft);
+}
+
+.caveat {
+  font-size: 0.85rem;
+  color: var(--sub);
+  margin-top: 14px;
+  border-top: 1px dotted var(--rule);
+  padding-top: 14px;
+}
+
+.day {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 26px 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 0 rgba(163, 123, 44, 0.06);
+}
+.day h2 {
+  margin: 0 0 4px;
+  font-size: 1.32rem;
+  color: var(--pine-deep);
+  font-weight: bold;
+}
+.daymeta {
+  color: var(--sub);
+  font-style: italic;
+  font-size: 0.92rem;
+  margin-bottom: 16px;
+}
+
+table.sched {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+table.sched td {
+  padding: 8px 10px;
+  vertical-align: top;
+  border-bottom: 1px dotted var(--rule);
+}
+table.sched tr:last-child td { border-bottom: none; }
+table.sched td:first-child {
+  white-space: nowrap;
+  color: var(--pine-deep);
+  font-weight: bold;
+  width: 118px;
+}
+
+a {
+  color: var(--pine-deep);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(31, 77, 58, 0.32);
+}
+a:hover { border-bottom-color: var(--pine); }
+
+.map {
+  font-size: 0.8rem;
+}
+.map::before {
+  content: "\2022 ";
+  color: var(--gold);
+  font-weight: bold;
+}
+
+.status {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+}
+.on-time { background: #dcefe3; color: #1f4d3a; }
+.scheduled { background: #ebe6d8; color: #5a5340; }
+
+.lounge {
+  font-size: 0.88rem;
+  background: #f3f8f5;
+  border-left: 3px solid var(--pine);
+  padding: 10px 14px;
+  margin-top: 8px;
+  border-radius: 2px;
+  color: var(--ink-soft);
+}
+
+/* ---------------- At-a-glance ---------------- */
+.glance table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin: 18px 0 32px;
+}
+.glance th, .glance td {
+  text-align: left;
+  padding: 8px 9px;
+  border-bottom: 1px solid var(--line);
+}
+.glance th {
+  color: var(--pine-deep);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-variant: small-caps;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  border-bottom: 2px solid var(--gold);
+}
+.glance tr:hover td { background: #fbf6e8; }
+
+/* ---------------- Map ---------------- */
+.map-section { margin: 30px 0 38px; }
+.map-section h2 {
+  font-size: 1.2rem;
+  color: var(--pine-deep);
+  margin: 0 0 8px;
+}
+.map-section p {
+  font-size: 0.9rem;
+  color: var(--sub);
+  margin: 0 0 12px;
+  font-style: italic;
+}
+#itinerary-map {
+  height: 420px;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+  z-index: 1;
+}
+.leaflet-popup-content {
+  font-family: "Times New Roman", Times, Georgia, serif;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+.leaflet-popup-content strong { color: var(--pine-deep); }
+
+footer.pagefoot {
+  text-align: center;
+  color: var(--sub);
+  font-size: 0.82rem;
+  margin-top: 46px;
+  font-style: italic;
+}
+footer.pagefoot .rule.thin { margin-bottom: 14px; }
+
+@media (max-width: 620px) {
+  .day { padding: 20px 18px; }
+  table.sched { font-size: 0.88rem; }
+  .masthead h1 { font-size: 1.7rem; }
+}

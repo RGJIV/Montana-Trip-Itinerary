@@ -1,16 +1,19 @@
 # Montana Trip Itinerary
 
-A personal travel dashboard for Richard's Montana trip.
+Personal travel dashboard for Richard’s August 2026 Montana trip (Bozeman + West Yellowstone fishing).
 
-## Features
-- Outbound: GSP → ATL → BZN on August 13, 2026
-- Return: WYS → SLC → ATL on August 20, 2026
-- Live FlightAware data (planned)
-- Nearest Delta Sky Club recommendations by gate
+**Live site:** https://rgjiv.github.io/Montana-Trip-Itinerary/
 
-## Current Status
-- Outbound flights tracked with latest status
-- Return leg from West Yellowstone (WYS) to SLC added
-- Long layover lounge recommendation at SLC Concourse B included
+## Contents
+- Day-by-day schedule (flights, hotels, meals, transfer, fishing base)
+- Live FlightAware-linked flight status and gates
+- Delta Sky Club recommendations by gate
+- Google Maps turn-by-turn links for every drive/walk
+- Interactive Leaflet map of key locations
+- Confirmation numbers and contact details
 
-Built with a clean web interface.
+## Style
+Formal letterhead treatment (shared visual language with the Swiss Christmas 2026 itinerary).
+
+## Confirmation
+Delta PNR: **JKYL2E** · SkyMiles: **2410247817**
