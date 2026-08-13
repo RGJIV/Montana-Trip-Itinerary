@@ -27,7 +27,13 @@
 <div class="note">
   Confirmation <strong>JKYL2E</strong> · SkyMiles <strong>2410247817</strong>.
   Every drive link opens turn-by-turn Google Maps directions.
-  Flight times and gates from FlightAware (live as of ~6:50 AM EDT).
+  Flight times and gates from FlightAware (snapshot in the schedule below).
+</div>
+
+<div class="flight-status-bar" id="flight-status-bar">
+  <button type="button" id="btn-check-flights">Check live flight status</button>
+  <span class="last-checked" id="last-checked">Not checked yet this session</span>
+  <p class="hint">Opens FlightAware for DL 1146 and DL 406 in new tabs. Gates and times change — use this before you leave for the airport. (Static site cannot auto-pull FlightAware data.)</p>
 </div>
 
 <div class="glance">
@@ -239,6 +245,46 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 (function () {
+  // ---- Flight status button ----
+  var FLIGHT_URLS = [
+    'https://www.flightaware.com/live/flight/DAL1146',
+    'https://www.flightaware.com/live/flight/DAL406'
+  ];
+  var btn = document.getElementById('btn-check-flights');
+  var lastEl = document.getElementById('last-checked');
+
+  function formatChecked(ts) {
+    try {
+      var d = new Date(ts);
+      return 'Last checked: ' + d.toLocaleString(undefined, {
+        weekday: 'short', month: 'short', day: 'numeric',
+        hour: 'numeric', minute: '2-digit'
+      });
+    } catch (e) {
+      return 'Last checked: just now';
+    }
+  }
+
+  function loadLastChecked() {
+    try {
+      var ts = localStorage.getItem('montana_flight_last_checked');
+      if (ts && lastEl) lastEl.textContent = formatChecked(Number(ts));
+    } catch (e) {}
+  }
+
+  if (btn) {
+    btn.addEventListener('click', function () {
+      FLIGHT_URLS.forEach(function (url) {
+        window.open(url, '_blank', 'noopener');
+      });
+      var now = Date.now();
+      try { localStorage.setItem('montana_flight_last_checked', String(now)); } catch (e) {}
+      if (lastEl) lastEl.textContent = formatChecked(now);
+    });
+  }
+  loadLastChecked();
+
+  // ---- Map ----
   const map = L.map('itinerary-map').setView([45.35, -111.15], 8);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
