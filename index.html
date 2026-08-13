@@ -33,8 +33,10 @@
 <div class="flight-status-bar" id="flight-status-bar">
   <button type="button" id="btn-check-flights">Check live flight status</button>
   <span class="last-checked" id="last-checked">Not checked yet this session</span>
-  <p class="hint">Opens FlightAware for DL 1146 and DL 406 in new tabs. Gates and times change — use this before you leave for the airport. (Static site cannot auto-pull FlightAware data.)</p>
+  <p class="hint" id="flight-hint">Opens FlightAware tabs. After you deploy the Cloudflare Worker (see worker/DEPLOY.md) and set WORKER_URL, this button also compares live data to the itinerary and shows a caution if anything differs.</p>
 </div>
+
+<div class="flight-caution" id="flight-caution" role="status" aria-live="polite"></div>
 
 <div class="glance">
 <table>
@@ -245,13 +247,45 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
 (function () {
-  // ---- Flight status button ----
-  var FLIGHT_URLS = [
-    'https://www.flightaware.com/live/flight/DAL1146',
-    'https://www.flightaware.com/live/flight/DAL406'
-  ];
+  // ============================================================
+  // FLIGHT CHECK — set WORKER_URL after deploying worker/flight-proxy.js
+  // See worker/DEPLOY.md (≈2 min on Cloudflare free tier)
+  // Leave empty to keep tab-only behavior.
+  // ============================================================
+  var WORKER_URL = ''; // e.g. 'https://montana-flight-proxy.YOUR_SUBDOMAIN.workers.dev'
+
+  // Expected values printed on this itinerary (Aug 13 outbound)
+  var EXPECTED = {
+    DAL1146: {
+      label: 'DL 1146 GSP→ATL',
+      gateDep: 'B4',
+      gateArr: 'D33',
+      scheduledDep: '6:55',
+      statusOk: ['on time', 'scheduled', 'boarding', 'departed', 'en route', 'arrived', 'landed']
+    },
+    DAL406: {
+      label: 'DL 406 ATL→BZN',
+      gateDep: 'B13',
+      gateArr: 'A1',
+      scheduledDep: '11:05',
+      statusOk: ['on time', 'scheduled', 'boarding', 'departed', 'en route', 'arrived', 'landed']
+    }
+  };
+
+  var FLIGHT_URLS = {
+    DAL1146: 'https://www.flightaware.com/live/flight/DAL1146',
+    DAL406: 'https://www.flightaware.com/live/flight/DAL406'
+  };
+
   var btn = document.getElementById('btn-check-flights');
   var lastEl = document.getElementById('last-checked');
+  var cautionEl = document.getElementById('flight-caution');
+  var hintEl = document.getElementById('flight-hint');
+
+  if (WORKER_URL && hintEl) {
+    hintEl.textContent =
+      'Fetches live status via your Cloudflare Worker, compares to this itinerary, and opens FlightAware tabs. A yellow caution appears if gates, times, or status differ.';
+  }
 
   function formatChecked(ts) {
     try {
@@ -272,14 +306,130 @@
     } catch (e) {}
   }
 
-  if (btn) {
-    btn.addEventListener('click', function () {
-      FLIGHT_URLS.forEach(function (url) {
-        window.open(url, '_blank', 'noopener');
+  function normGate(g) {
+    return String(g || '').toUpperCase().replace(/\s+/g, '').replace(/^GATE/, '');
+  }
+
+  function timeLooseMatch(expected, live) {
+    if (!expected || !live) return true; // no data → don't flag
+    var e = String(expected).replace(/\s/g, '').toLowerCase();
+    var l = String(live).replace(/\s/g, '').toLowerCase();
+    // Compare hour:minute digits only
+    var em = e.match(/(\d{1,2}):(\d{2})/);
+    var lm = l.match(/(\d{1,2}):(\d{2})/);
+    if (em && lm) return em[1] === lm[1] && em[2] === lm[2];
+    return l.indexOf(e) !== -1 || e.indexOf(l) !== -1;
+  }
+
+  function compareFlight(id, live) {
+    var exp = EXPECTED[id];
+    if (!exp || !live || live.error) {
+      return live && live.error
+        ? [{ flight: id, issue: 'Proxy error: ' + live.error }]
+        : [];
+    }
+    var issues = [];
+    if (live.gateDep && exp.gateDep && normGate(live.gateDep) !== normGate(exp.gateDep)) {
+      issues.push({
+        flight: exp.label,
+        issue: 'Dep gate live ' + live.gateDep + ' vs itinerary ' + exp.gateDep
       });
-      var now = Date.now();
-      try { localStorage.setItem('montana_flight_last_checked', String(now)); } catch (e) {}
-      if (lastEl) lastEl.textContent = formatChecked(now);
+    }
+    if (live.gateArr && exp.gateArr && normGate(live.gateArr) !== normGate(exp.gateArr)) {
+      issues.push({
+        flight: exp.label,
+        issue: 'Arr gate live ' + live.gateArr + ' vs itinerary ' + exp.gateArr
+      });
+    }
+    if (live.scheduledDep && exp.scheduledDep && !timeLooseMatch(exp.scheduledDep, live.scheduledDep)) {
+      issues.push({
+        flight: exp.label,
+        issue: 'Dep time live ' + live.scheduledDep + ' vs itinerary ~' + exp.scheduledDep
+      });
+    }
+    if (live.status) {
+      var st = String(live.status).toLowerCase();
+      var bad = /delay|cancel|divert|late/.test(st);
+      if (bad) {
+        issues.push({ flight: exp.label, issue: 'Status: ' + live.status });
+      }
+    }
+    return issues;
+  }
+
+  function showCaution(issues, okMsg) {
+    if (!cautionEl) return;
+    cautionEl.classList.remove('ok');
+    if (!issues || !issues.length) {
+      cautionEl.className = 'flight-caution visible ok';
+      cautionEl.innerHTML =
+        '<strong>Live check OK</strong>' +
+        (okMsg || 'No material differences vs the printed itinerary (or proxy not configured).');
+      return;
+    }
+    cautionEl.className = 'flight-caution visible';
+    var html = '<strong>Caution — live data differs from itinerary</strong><ul>';
+    issues.forEach(function (x) {
+      html += '<li><strong>' + x.flight + '</strong>: ' + x.issue + '</li>';
+    });
+    html += '</ul>';
+    cautionEl.innerHTML = html;
+  }
+
+  function openTabs() {
+    Object.keys(FLIGHT_URLS).forEach(function (k) {
+      window.open(FLIGHT_URLS[k], '_blank', 'noopener');
+    });
+  }
+
+  function stampChecked() {
+    var now = Date.now();
+    try { localStorage.setItem('montana_flight_last_checked', String(now)); } catch (e) {}
+    if (lastEl) lastEl.textContent = formatChecked(now);
+  }
+
+  async function fetchLive(ident) {
+    var url = WORKER_URL.replace(/\/$/, '') + '/?flight=' + encodeURIComponent(ident);
+    var res = await fetch(url, { method: 'GET', mode: 'cors' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return res.json();
+  }
+
+  if (btn) {
+    btn.addEventListener('click', async function () {
+      openTabs();
+      stampChecked();
+
+      if (!WORKER_URL) {
+        showCaution([], 'Worker not configured yet — opened FlightAware tabs only. See worker/DEPLOY.md.');
+        return;
+      }
+
+      btn.disabled = true;
+      var prev = btn.textContent;
+      btn.textContent = 'Checking…';
+
+      try {
+        var ids = Object.keys(EXPECTED);
+        var results = await Promise.all(
+          ids.map(function (id) {
+            return fetchLive(id).catch(function (err) {
+              return { flight: id, error: String(err.message || err) };
+            });
+          })
+        );
+
+        var allIssues = [];
+        results.forEach(function (live, i) {
+          allIssues = allIssues.concat(compareFlight(ids[i], live));
+        });
+        showCaution(allIssues);
+      } catch (err) {
+        showCaution([{ flight: 'Proxy', issue: String(err.message || err) }]);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = prev;
+      }
     });
   }
   loadLastChecked();
