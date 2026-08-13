@@ -5,80 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Montana Trip Itinerary</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
-        .container { max-width: 900px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        h1 { color: #003366; }
-        .flight-card { border: 1px solid #ddd; padding: 15px; margin: 15px 0; border-radius: 6px; }
-        .flight-header { font-weight: bold; color: #003366; font-size: 1.1em; }
-        .status { padding: 4px 8px; border-radius: 4px; font-size: 0.9em; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; margin: 0; padding: 16px; background: #f0f2f5; color: #1a1a1a; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 24px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        h1 { color: #003366; margin-top: 0; font-size: 1.6em; }
+        h2 { color: #003366; border-bottom: 2px solid #003366; padding-bottom: 6px; margin-top: 32px; }
+        .flight-card { border: 1px solid #e0e0e0; padding: 16px; margin: 16px 0; border-radius: 8px; background: #fafafa; }
+        .flight-header { font-weight: 700; color: #003366; font-size: 1.15em; margin-bottom: 8px; }
+        .status { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.85em; font-weight: 600; }
         .on-time { background: #d4edda; color: #155724; }
-        .delayed { background: #fff3cd; color: #856404; }
-        .lounge { background: #e7f3ff; padding: 10px; border-radius: 4px; margin-top: 10px; }
-        .section { margin: 30px 0; }
+        .scheduled { background: #e2e3e5; color: #383d41; }
+        .lounge { background: #e8f4fd; padding: 12px; border-radius: 6px; margin-top: 12px; border-left: 4px solid #0066cc; }
+        .meta { color: #555; font-size: 0.95em; line-height: 1.5; }
+        .footer { margin-top: 32px; font-size: 0.85em; color: #777; border-top: 1px solid #eee; padding-top: 16px; }
+        a { color: #0066cc; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🏔️ Montana Trip Itinerary</h1>
-        <p><strong>Traveler:</strong> Richard | <strong>Confirmation:</strong> JKYL2E</p>
-        
+        <h1>Montana Trip Itinerary</h1>
+        <p><strong>Traveler:</strong> Richard &nbsp;|&nbsp; <strong>Confirmation:</strong> JKYL2E &nbsp;|&nbsp; <strong>SkyMiles:</strong> 2410247817</p>
+
         <div class="section">
-            <h2>Outbound - August 13, 2026</h2>
-            
+            <h2>Outbound — Thursday, August 13, 2026</h2>
+
             <div class="flight-card">
-                <div class="flight-header">DL1146: GSP → ATL</div>
-                <p><strong>Scheduled:</strong> 6:55 AM departure from Gate B3 | 7:51 AM arrival Gate B23</p>
+                <div class="flight-header">DL 1146 &nbsp; GSP → ATL</div>
+                <div class="meta">
+                    <strong>Departure:</strong> Gate B4 &nbsp; 6:55 AM EDT<br>
+                    <strong>Arrival:</strong> Gate C3 &nbsp; 7:51 AM EDT<br>
+                    <strong>Seat:</strong> 3A &nbsp;|&nbsp; Aircraft: Boeing 737-900
+                </div>
                 <p><strong>Status:</strong> <span class="status on-time">On Time</span></p>
                 <div class="lounge">
-                    <strong>🍸 Nearest Sky Club at ATL:</strong><br>
-                    Concourse A Sky Club near Gate A17 or A19 (upper level, next to P.F. Chang's)<br>
-                    <em>~5-10 minute walk from Gate B3 via Plane Train</em>
+                    <strong>Nearest Sky Club at ATL (for connection):</strong><br>
+                    Concourse A Sky Club near Gate A17 / A19 (upper level, near P.F. Chang’s).<br>
+                    From arrival Gate C3 take the Plane Train to A, then short walk.
                 </div>
             </div>
-            
+
             <div class="flight-card">
-                <div class="flight-header">DL406: ATL → BZN</div>
-                <p><strong>Scheduled:</strong> 11:05 AM departure from Gate A1 | 1:05 PM arrival Gate A1</p>
-                <p><strong>Status:</strong> <span class="status delayed">Delayed ~32 minutes</span></p>
+                <div class="flight-header">DL 406 &nbsp; ATL → BZN</div>
+                <div class="meta">
+                    <strong>Departure:</strong> Gate B13 &nbsp; 11:05 AM EDT<br>
+                    <strong>Arrival:</strong> Gate A1 &nbsp; 1:00 PM MDT<br>
+                    <strong>Seat:</strong> 3A &nbsp;|&nbsp; Aircraft: Boeing 757-200
+                </div>
+                <p><strong>Status:</strong> <span class="status on-time">On Time</span></p>
                 <div class="lounge">
-                    <strong>🍸 Nearest Sky Club at ATL:</strong><br>
-                    Concourse A Sky Club near Gate A17 or A19 (upper level)<br>
-                    <em>Very close to your departure Gate A1</em>
+                    <strong>Nearest Sky Club at ATL (before departure):</strong><br>
+                    Concourse B Sky Club or the large Concourse A club near A17/A19. Gate B13 is in Concourse B — check the nearest available lounge on the day.
                 </div>
                 <div class="lounge">
-                    <strong>🍸 At BZN (Bozeman Yellowstone):</strong><br>
-                    Delta Sky Club near Gate 3<br>
-                    <em>Short walk from arrival Gate A1</em>
+                    <strong>At BZN:</strong><br>
+                    Delta Sky Club near Gate 3. Short walk from arrival Gate A1.
                 </div>
             </div>
         </div>
-        
+
         <div class="section">
-            <h2>Return - August 20, 2026 (West Yellowstone → ATL)</h2>
-            
+            <h2>Return — Thursday, August 20, 2026</h2>
+
             <div class="flight-card">
-                <div class="flight-header">WYS → SLC (Delta Connection)</div>
-                <p><strong>Scheduled:</strong> ~11:29 AM - 1:09 PM departure from WYS | ~12:43 PM - 2:24 PM arrival SLC</p>
-                <p><strong>Status:</strong> Check FlightAware for live updates</p>
+                <div class="flight-header">DL 406 &nbsp; BZN → ATL</div>
+                <div class="meta">
+                    <strong>Departure:</strong> 2:15 PM MDT<br>
+                    <strong>Arrival:</strong> 8:12 PM EDT<br>
+                    <strong>Seat:</strong> 2A
+                </div>
+                <p><strong>Status:</strong> <span class="status scheduled">Scheduled</span></p>
                 <div class="lounge">
-                    <strong>🍸 At SLC (Salt Lake City):</strong><br>
-                    Delta Sky Club in Concourse B near Gate B26 (new large lounge, ~34,000 sq ft, 600 seats)<br>
-                    <em>Excellent for a long layover - dinosaur skeleton landmark at entrance</em>
+                    <strong>At BZN before departure:</strong><br>
+                    Delta Sky Club near Gate 3.
                 </div>
             </div>
-            
+
             <div class="flight-card">
-                <div class="flight-header">SLC → ATL (Delta)</div>
-                <p><strong>Scheduled:</strong> Multiple daily nonstops, ~3h 40m flight time</p>
-                <p><strong>Status:</strong> Check FlightAware for live updates</p>
+                <div class="flight-header">DL 2281 &nbsp; ATL → GSP</div>
+                <div class="meta">
+                    <strong>Departure:</strong> 10:00 PM EDT<br>
+                    <strong>Arrival:</strong> 10:59 PM EDT<br>
+                    <strong>Seat:</strong> 2A
+                </div>
+                <p><strong>Status:</strong> <span class="status scheduled">Scheduled</span></p>
                 <div class="lounge">
-                    <strong>🍸 At ATL:</strong><br>
-                    Multiple Sky Clubs - Concourse A near A17/A19 recommended based on your arrival gate
+                    <strong>At ATL (long evening layover):</strong><br>
+                    Use the Concourse A or B Sky Clubs depending on your arrival gate. Plenty of time after the ~8:12 PM arrival before the 10:00 PM departure.
                 </div>
             </div>
         </div>
-        
-        <p><em>Data pulled August 13, 2026. FlightAware integration coming soon for live updates.</em></p>
+
+        <div class="footer">
+            Live data from FlightAware as of ~6:20 AM EDT on August 13, 2026.<br>
+            Gates and status can change — always re-check the Delta app or FlightAware before heading to the airport.<br>
+            <a href="https://www.flightaware.com/live/flight/DAL1146">Track DL1146</a> &nbsp;·&nbsp; 
+            <a href="https://www.flightaware.com/live/flight/DAL406">Track DL406</a>
+        </div>
     </div>
 </body>
 </html>
