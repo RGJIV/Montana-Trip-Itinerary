@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Montana Trip Itinerary</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { color: #003366; }
+        .flight-card { border: 1px solid #ddd; padding: 15px; margin: 15px 0; border-radius: 6px; }
+        .flight-header { font-weight: bold; color: #003366; font-size: 1.1em; }
+        .status { padding: 4px 8px; border-radius: 4px; font-size: 0.9em; }
+        .on-time { background: #d4edda; color: #155724; }
+        .delayed { background: #fff3cd; color: #856404; }
+        .lounge { background: #e7f3ff; padding: 10px; border-radius: 4px; margin-top: 10px; }
+        .section { margin: 30px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏔️ Montana Trip Itinerary</h1>
+        <p><strong>Traveler:</strong> Richard | <strong>Confirmation:</strong> JKYL2E</p>
+        
+        <div class="section">
+            <h2>Outbound - August 13, 2026</h2>
+            
+            <div class="flight-card">
+                <div class="flight-header">DL1146: GSP → ATL</div>
+                <p><strong>Scheduled:</strong> 6:55 AM departure from Gate B3 | 7:51 AM arrival Gate B23</p>
+                <p><strong>Status:</strong> <span class="status on-time">On Time</span></p>
+                <div class="lounge">
+                    <strong>🍸 Nearest Sky Club at ATL:</strong><br>
+                    Concourse A Sky Club near Gate A17 or A19 (upper level, next to P.F. Chang's)<br>
+                    <em>~5-10 minute walk from Gate B3 via Plane Train</em>
+                </div>
+            </div>
+            
+            <div class="flight-card">
+                <div class="flight-header">DL406: ATL → BZN</div>
+                <p><strong>Scheduled:</strong> 11:05 AM departure from Gate A1 | 1:05 PM arrival Gate A1</p>
+                <p><strong>Status:</strong> <span class="status delayed">Delayed ~32 minutes</span></p>
+                <div class="lounge">
+                    <strong>🍸 Nearest Sky Club at ATL:</strong><br>
+                    Concourse A Sky Club near Gate A17 or A19 (upper level)<br>
+                    <em>Very close to your departure Gate A1</em>
+                </div>
+                <div class="lounge">
+                    <strong>🍸 At BZN (Bozeman Yellowstone):</strong><br>
+                    Delta Sky Club near Gate 3<br>
+                    <em>Short walk from arrival Gate A1</em>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Return - August 20, 2026 (West Yellowstone → ATL)</h2>
+            
+            <div class="flight-card">
+                <div class="flight-header">WYS → SLC (Delta Connection)</div>
+                <p><strong>Scheduled:</strong> ~11:29 AM - 1:09 PM departure from WYS | ~12:43 PM - 2:24 PM arrival SLC</p>
+                <p><strong>Status:</strong> Check FlightAware for live updates</p>
+                <div class="lounge">
+                    <strong>🍸 At SLC (Salt Lake City):</strong><br>
+                    Delta Sky Club in Concourse B near Gate B26 (new large lounge, ~34,000 sq ft, 600 seats)<br>
+                    <em>Excellent for a long layover - dinosaur skeleton landmark at entrance</em>
+                </div>
+            </div>
+            
+            <div class="flight-card">
+                <div class="flight-header">SLC → ATL (Delta)</div>
+                <p><strong>Scheduled:</strong> Multiple daily nonstops, ~3h 40m flight time</p>
+                <p><strong>Status:</strong> Check FlightAware for live updates</p>
+                <div class="lounge">
+                    <strong>🍸 At ATL:</strong><br>
+                    Multiple Sky Clubs - Concourse A near A17/A19 recommended based on your arrival gate
+                </div>
+            </div>
+        </div>
+        
+        <p><em>Data pulled August 13, 2026. FlightAware integration coming soon for live updates.</em></p>
+    </div>
+</body>
+</html>
