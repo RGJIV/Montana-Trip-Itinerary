@@ -191,6 +191,53 @@ a:hover { border-bottom-color: var(--pine); }
   color: var(--ink-soft);
 }
 
+/* ---------------- Flight status bar ---------------- */
+.flight-status-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  padding: 12px 16px;
+  border-radius: 2px;
+  margin: 18px 0 8px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+.flight-status-bar button {
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--pine);
+  border: none;
+  border-radius: 2px;
+  padding: 9px 16px;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(20, 51, 39, 0.25);
+}
+.flight-status-bar button:hover {
+  background: var(--pine-deep);
+}
+.flight-status-bar button:active {
+  transform: translateY(1px);
+}
+.flight-status-bar .last-checked {
+  font-size: 0.82rem;
+  color: var(--sub);
+  font-style: italic;
+}
+.flight-status-bar .hint {
+  flex: 1 1 100%;
+  font-size: 0.8rem;
+  color: var(--sub);
+  margin: 0;
+}
+
 /* ---------------- At-a-glance ---------------- */
 .glance table {
   width: 100%;
@@ -254,4 +301,5 @@ footer.pagefoot .rule.thin { margin-bottom: 14px; }
   .day { padding: 20px 18px; }
   table.sched { font-size: 0.88rem; }
   .masthead h1 { font-size: 1.7rem; }
+  .flight-status-bar { padding: 12px; }
 }
